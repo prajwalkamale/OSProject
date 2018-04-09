@@ -34,3 +34,18 @@ printf("\nData written by writer is %d",data);
 sleep(1);
 sem_post(&wrt);
 }
+void *reader(void *arg)
+{
+sem_wait(&mutex);
+rc=rc+1;
+if(rc==1)
+sem_wait(&wrt);
+sem_post(&mutex);
+printf("\nData read by reader is %d",data);
+sleep(1);
+sem_post(&mutex);
+rc=rc-1;
+if(rc==0)
+sem_wait(&wrt);
+sem_post(&mutex);
+}
