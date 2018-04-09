@@ -22,6 +22,15 @@ for(i=0;i<2;i++)
 pthread_join(wtid[i],NULL);
 pthread_join(rtid[i],NULL);
 }
+  return 0;
 }
-return 0;
+void *writer(void *arg)
+{
+int f;
+f=(int)arg;
+sem_wait(&wrt);
+data++'
+printf("\nData written by writer is %d",data);
+sleep(1);
+sem_post(&wrt);
 }
