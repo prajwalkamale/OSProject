@@ -17,6 +17,11 @@ for(i=0;i<2;i++)
 pthread_create(&wtid[i],NULL,writer,(void *)i);
 pthread_create(&rtid[i],NULL,reader,(void *)i);
 }
-
+for(i=0;i<2;i++)
+{
+pthread_join(wtid[i],NULL);
+pthread_join(rtid[i],NULL);
+}
+}
 return 0;
 }
