@@ -29,7 +29,7 @@ void *writer(void *arg)
 int f;
 f=(int)arg;
 sem_wait(&wrt);
-data++'
+data++;
 printf("\nData written by writer is %d",data);
 sleep(1);
 sem_post(&wrt);
